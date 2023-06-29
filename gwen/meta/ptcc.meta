@@ -1,0 +1,28 @@
+Feature: PTCC Meta
+
+@StepDef
+@Action
+Scenario: I clarify ptcc cases
+	Given clarifycase can be located by id "btn_X_x_1"
+	And reasonframe can be located by id "xguiframe"
+	And reasonfield can be located by id "form.reasonC" in reasonframe
+	And savebtn can be located by id "btn_U__14" in reasonframe
+	When I check cases item for each cases item located by xpath "//input[@form='ReactToMainCheckBox']"
+	And I click clarifycase
+	And I type "used in automation script" in reasonfield
+	And I click savebtn
+
+@Action
+@StepDef
+Scenario: I save the form
+    Given save_button is "btn_y___s"
+	When I execute js "document.querySelector('#${save_button}').click()"
+	And I accept the confirmation popup
+	When I execute js "document.querySelector('#${save_button}').click()"
+	And I accept the confirmation popup
+
+@Assertion
+@StepDef
+ Scenario: the transaction status should be "<status>"
+	Given the transaction status can be located by xpath "//label[text()='Status']/parent::td/following-sibling::td[1]/b"
+	Then the transaction status should be "$<status>"

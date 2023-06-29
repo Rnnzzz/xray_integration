@@ -1,0 +1,12 @@
+Feature: Navigation Meta
+
+@Action
+@StepDef
+ Scenario: I navigate to "<order_type>" order page
+	Given order_management can be located by id "M1_3"
+    And create single_order can be located by id "M1_3_1"
+	And order_type can be located by xpath "//span[text()='$<order_type>']"
+	When I move to create single_order of order_management
+	And I click order_type
+    Then the status can be located by xpath "//label[text()='Status']/parent::td/following-sibling::td[1]/b"
+	And the status should be "Simulation"

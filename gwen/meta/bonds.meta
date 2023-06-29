@@ -1,0 +1,77 @@
+Feature: Bonds Meta
+
+@Action
+@StepDef
+Scenario: I input "<portfolio>" in the portfolio field
+    Given the portfolio field can be located by id "text.formSearch.portfolio.code"
+    When I enter "$<portfolio>" in the portfolio field
+
+@Action
+@StepDef
+Scenario: I input "<instrument>" in the instrument field
+    Given the instrument field can be located by id "text.formSearch.instr.code"
+    When I enter "$<instrument>" in the instrument field
+
+@Action
+@StepDef
+Scenario: I input "<nominal_price>" in the nominal price field
+    Given the nominal price field can be located by id "form.quantityN"
+    When I type "$<nominal_price>" in the nominal price field
+
+@Action
+@StepDef
+Scenario: I input "<client_price>" in the client price field
+    Given the client price field can be located by id "form.quoteN"
+    When I type "$<client_price>" in the client price field
+
+@Action
+@StepDef
+Scenario: I input "<phone>" in the phone field
+    Given the phone field can be located by id "form.udPhoneC"
+    When I type "$<phone>" in the phone field
+
+@Action
+@StepDef
+Scenario: I place "<instructed_by>" in the instructed by field
+    Given the instructed by icon can be located by xpath "//i[@title='Search Spoken To Person']"
+    When I click the instructed by icon
+    And the instructor can be located by xpath "//label[text()='$<instructed_by>']"
+    And I click the instructor
+
+@Action
+@StepDef
+Scenario: I place "<contact_number>" in the contact number field
+    Given the contact number icon can be located by xpath "//label[text()='Contact Number']/parent::td/following-sibling::td/i"
+    When I click the contact number icon
+    And the contact can be located by xpath "//label[text()='$<contact_number>']"
+    And I click the contact
+
+
+@Action
+@StepDef
+Scenario: I input "<override_reason>" in the override reason field
+    Given the override reason field can be located by id "form.udReasonForOverrideC"
+    When I type "$<override_reason>" in the override reason field
+    And I submit the form
+
+@Action
+@StepDef
+Scenario: I submit the form
+    Given the submit button can be located by id "btn_x71o_"
+    And I click the submit button 
+
+@Action
+@StepDef
+Scenario: I create bond order with "<portfolio>","<instrument>","<nominal_price>","<client_price>","<phone>","<instructed_by>","<contact_number>" details
+    Given I input "$<portfolio>" in the portfolio field
+    And I input "$<instrument>" in the instrument field
+    And I input "$<nominal_price>" in the nominal price field
+    And I input "$<client_price>" in the client price field
+    And I input "$<phone>" in the phone field
+    And I place "$<instructed_by>" in the instructed by field
+    And I place "$<contact_number>" in the contact number field
+    And I submit the form
+    And I input "used in automation script" in the override reason field
+    And I clarify ptcc cases
+    And I save the form
+    

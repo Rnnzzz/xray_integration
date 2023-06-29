@@ -1,0 +1,28 @@
+Feature: Login Meta
+
+@Context
+@StepDef
+ Scenario: I login with "<username>","<password>"
+	Given I start a new browser
+    When I navigate to "https://172.31.29.91:15051/wui/activity/index"
+	And login button can be located by id "but_login"
+	And user field can be located by name "j_username"
+	And password field can be located by name "j_password"
+    And admit cbx can be located by id "admit"
+	When I type "$<username>" in user field
+	And I type "$<password>" in password field
+    And I tick admit cbx 
+	And I click login button
+
+@Context
+@StepDef
+ Scenario: to remove duplicate session
+	Given confirm button can be located by xpath "//button[contains(text(), 'Confirm')]" with no wait
+    When I click confirm button
+
+@Assertion
+@StepDef
+ Scenario: I logout the session
+	Given logout button can be located by xpath "//li[@title='Logout']"
+    When I click logout button
+	Then the current URL should contain "/wui/activity/index"
