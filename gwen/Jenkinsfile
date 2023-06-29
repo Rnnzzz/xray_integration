@@ -1,10 +1,6 @@
 pipeline {
-  agent {
-      // replace with an agent that has docker installed
-      label 'docker-agent'
-  }
+  agent any
   parameters { 
-    choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
     choice(name: 'browser', choices: ['chrome', 'firefox', 'edge'], description: 'Target web browser')
     booleanParam(name: 'dry_run', defaultValue: false, description: 'Validate without executing')
     booleanParam(name: 'parallel', defaultValue: false, description: 'Enable parallel execution')
@@ -13,7 +9,6 @@ pipeline {
     booleanParam(name: 'video', defaultValue: true, description: 'Enable video capture (not available with parallel or headless)') 
   }
   environment {
-    GWEN_ENV = "${params.env}"
     GWEN_BROWSER = "${params.browser}"
     GWEN_DRY_RUN = "${params.dry_run}"
     GWEN_PARALLEL = "${params.parallel}"
