@@ -1,8 +1,6 @@
 pipeline {
   agent { 
-    dockerfile{
-      dir 'gwen/Dockerfile'
-    }
+    dockerfile true
   }
   parameters { 
     choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
