@@ -17,14 +17,14 @@ pipeline {
     GWEN_VIDEO = "${params.video}"
   }
   stages {
-    stage("Prepare") {
-      steps {
-        script {
-          // Create output dir to avoid potential permission issues in docker
-          sh 'mkdir -p gwen/output'
-        }
-      }
-    }
+    // stage("Prepare") {
+    //   steps {
+    //     script {
+    //       // Create output dir to avoid potential permission issues in docker
+    //       sh 'mkdir -p gwen/output'
+    //     }
+    //   }
+    // }
     stage("Gwen") {
       steps {
         script {
