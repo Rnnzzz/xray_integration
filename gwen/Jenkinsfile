@@ -1,6 +1,6 @@
 pipeline {
   agent { 
-    docker{name "Built-In Node"}
+    label 'Built-In Node'
   }
   parameters { 
     choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
