@@ -1,6 +1,6 @@
 pipeline {
   agent { 
-    docker{ image 'gwen_gwen:latest'}
+    docker{ image 'gwen_gwen'}
   }
   parameters { 
     choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
