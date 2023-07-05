@@ -21,7 +21,7 @@ pipeline {
       steps {
         script {
           // Create output dir to avoid potential permission issues in docker
-          echo 'HELLO'
+          sh 'mkdir -p gwen/output'
         }
       }
     }
