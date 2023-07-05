@@ -1,7 +1,7 @@
 pipeline {
   agent { 
     dockerfile{
-      dir 'gwen/Dockerfile'
+      dir 'gwen'
     }
   }
   parameters { 
