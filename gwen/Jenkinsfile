@@ -1,7 +1,7 @@
 pipeline {
   agent {
       // replace with an agent that has docker installed
-      label 'docker'
+      label 'docker_agent'
   }
   parameters { 
     choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
