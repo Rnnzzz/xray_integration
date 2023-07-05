@@ -29,7 +29,7 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          ls
+          sh 'ls'
         }
       }
     }
