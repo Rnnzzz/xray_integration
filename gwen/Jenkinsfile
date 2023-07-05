@@ -32,6 +32,8 @@ pipeline {
           sh 'docker-compose -f gwen/docker-compose.yml run gwen'
         }
       }
+    }
+  }
     //   post {
     //     always {
     //       sh 'docker-compose -f gwen/docker-compose.yml down'
@@ -47,5 +49,4 @@ pipeline {
     //     }
     //   }
     // }
-  // }
 }
