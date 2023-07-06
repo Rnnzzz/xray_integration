@@ -26,7 +26,6 @@ pipeline {
         script {
           // Create output dir to avoid potential permission issues in docker
           sh 'mkdir -p gwen/output'
-          sh 'echo $PATH'
         }
       }
     }
@@ -34,12 +33,12 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          sh "/usr/local/bin/docker-compose -f gwen/docker-compose.yml run gwen"
+          sh "usr/local/bin/docker-compose -f gwen/docker-compose.yml run gwen"
         }
       }
       post {
         always {
-          sh "/usr/local/bin/docker-compose -f gwen/docker-compose.yml down"
+          sh "usr/local/bin/docker-compose -f gwen/docker-compose.yml down"
           archiveArtifacts artifacts: 'gwen/output/reports/**'
           publishHTML(target: [
                         allowMissing          : false,
