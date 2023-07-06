@@ -26,13 +26,6 @@ pipeline {
         script {
           // Create output dir to avoid potential permission issues in docker
           sh 'mkdir -p gwen/output'
-          sh '''
-          docker version
-          docker info
-          docker compose version
-          curl --version
-          jq --version
-          '''
         }
       }
     }
