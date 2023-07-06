@@ -24,7 +24,7 @@ pipeline {
         script {
           // Create output dir to avoid potential permission issues in docker
           sh 'mkdir -p gwen/output'
-          sh 'mkdir $PWD/project/node_modules'
+          sh 'mkdir -p $PWD/project/node_modules'
         }
       }
     }
