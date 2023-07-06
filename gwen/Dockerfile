@@ -7,5 +7,6 @@ RUN apk update \
     && apk add openjdk11-jre
 
 # Run as a non root user
+RUN chown -R node:node /app/node_modules
 RUN addgroup -S gwen && adduser -S gwen -G gwen -u 4936
 USER gwen
