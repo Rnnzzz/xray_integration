@@ -1,6 +1,6 @@
 pipeline {
   agent { 
-    dockerfile {dir "gwen"}
+        docker { image 'node:18.16.0-alpine' }
   }
   parameters { 
     choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
@@ -33,12 +33,12 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          sh "docker-compose -f gwen/docker-compose.yml run gwen"
+          sh "/usr/local/bin/docker-compose -f gwen/docker-compose.yml run gwen"
         }
       }
       post {
         always {
-          sh "docker-compose -f gwen/docker-compose.yml down"
+          sh "/usr/local/bin/docker-compose -f gwen/docker-compose.yml down"
           archiveArtifacts artifacts: 'gwen/output/reports/**'
           publishHTML(target: [
                         allowMissing          : false,
