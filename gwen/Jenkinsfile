@@ -1,6 +1,6 @@
 pipeline {
   agent { 
-        dockerContainer { label 'myjenkins'}
+        dockerContainer { image 'myjenkins'}
   }
   parameters { 
     choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
