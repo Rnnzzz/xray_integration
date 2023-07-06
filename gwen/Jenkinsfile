@@ -33,12 +33,12 @@ pipeline {
       steps {
         script {
           // Spin up environment and execute Gwen in docker
-          sh "docker-compose -f gwen/docker-compose.yml run gwen"
+          sh "docker compose -f gwen/docker-compose.yml run gwen"
         }
       }
       post {
         always {
-          sh "docker-compose -f gwen/docker-compose.yml down"
+          sh "docker compose -f gwen/docker-compose.yml down"
           archiveArtifacts artifacts: 'gwen/output/reports/**'
           publishHTML(target: [
                         allowMissing          : false,
