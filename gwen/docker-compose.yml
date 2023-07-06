@@ -1,4 +1,4 @@
-
+version: '3.5'
 services:
   chrome:
     image: selenoid/chrome:latest
@@ -23,11 +23,11 @@ services:
     ports:
       - "4444:4444"
     volumes:
-      - "C:/Users/mmiraflores/Documents/GwenStuffs/GwenProjects/TAP/gwen/browsers:/etc/selenoid/:ro"
+      - "$PWD/gwen/browsers:/etc/selenoid/:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "C:/Users/mmiraflores/Documents/GwenStuffs/GwenProjects/TAP/gwen/output/.video:/opt/selenoid/video"
+      - "$PWD/gwen/output/.video:/opt/selenoid/video"
     environment:
-      - OVERRIDE_VIDEO_OUTPUT_DIR=C:/Users/mmiraflores/Documents/GwenStuffs/GwenProjects/TAP/gwen/output/.video
+      - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/gwen/output/.video
     command: ["-container-network", "gwen-net", "-video-output-dir", "/opt/selenoid/video"]
   selenoid-ui:
     depends_on:
@@ -60,9 +60,9 @@ services:
       - GWEN_HEADLESS
       - GWEN_VIDEO
     volumes:
-      - "C:/Users/mmiraflores/Documents/GwenStuffs/GwenProjects/TAP:/project"
+      - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features/test.feature -f html,json"
+    command: bash -c "yarn install && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features"
     networks:
       - gwen-net
   gwen-dry-run:
@@ -72,9 +72,9 @@ services:
     environment:
       - NO_COLOR
     volumes:
-      - "C:/Users/mmiraflores/Documents/GwenStuffs/GwenProjects/TAP:/project"
+      - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen -bn --parallel gwen/features/test.feature"
+    command: bash -c "yarn install && yarn gwen -bn --parallel gwen/features"
     networks:
       - gwen-net
 networks:
