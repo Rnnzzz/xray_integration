@@ -1,6 +1,7 @@
 pipeline {
   agent { 
-        docker { image 'node:18.16.0-alpine' }
+        dockerfile
+         { dir 'gwen' }
   }
   parameters { 
     choice(name: 'env', choices: ['dev', 'test', 'staging', 'prod'], description: 'Target environment')
