@@ -8,4 +8,4 @@ RUN apk update \
 
 # Run as a non root user
 RUN addgroup -S gwen && adduser -S gwen -G gwen -u 4936
-USER gwen
+USER root

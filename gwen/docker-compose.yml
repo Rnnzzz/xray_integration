@@ -62,7 +62,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "chown -R $USER /project/node_modules/ && yarn install -g --unsafe-perm=true --allow-root && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features"
+    command: bash -c "yarn install -g --unsafe-perm=true --allow-root && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features"
     networks:
       - gwen-net
   gwen-dry-run:
