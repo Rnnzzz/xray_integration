@@ -1,5 +1,15 @@
 # base alpine image with node
-FROM node:18-alpine
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+RUN chown -R node.node /app
+
+COPY . .
+
+CMD ["npm", "run", "start"]
 
 # install bash and java
 RUN apk update \
