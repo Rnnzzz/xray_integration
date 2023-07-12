@@ -34,20 +34,20 @@ pipeline {
           sh "docker-compose -f gwen/docker-compose.yml run gwen"
         }
       }
-      // post {
-      //   always {
-      //     sh "docker-compose -f gwen/docker-compose.yml down"
-      //     archiveArtifacts artifacts: 'gwen/output/reports/**'
-      //     publishHTML(target: [
-      //                   allowMissing          : false,
-      //                   alwaysLinkToLastBuild : true,
-      //                   keepAll               : true,
-      //                   reportDir             : "gwen/output/reports/html",
-      //                   reportFiles           : 'index.html',
-      //                   reportName            : "Gwen-Report"
-      //     ])
-      //   }
-      // }
+      post {
+        always {
+          sh "docker-compose -f gwen/docker-compose.yml down"
+          archiveArtifacts artifacts: 'gwen/output/reports/**'
+          publishHTML(target: [
+                        allowMissing          : false,
+                        alwaysLinkToLastBuild : true,
+                        keepAll               : true,
+                        reportDir             : "gwen/output/reports/html",
+                        reportFiles           : 'index.html',
+                        reportName            : "Gwen-Report"
+          ])
+        }
+      }
     }
   }
 }
