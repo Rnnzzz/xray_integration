@@ -62,7 +62,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features"
+    command: bash -c "chown -R node:node /project/node_modules && yarn install && yarn gwen -b -c gwen/browsers/selenoid.conf gwen/features"
     networks:
       - gwen-net
   gwen-dry-run:
@@ -74,7 +74,7 @@ services:
     volumes:
       - "$PWD:/project"
     working_dir: /project
-    command: bash -c "yarn install && yarn gwen -bn gwen/features"
+    command: bash -c "chown -R node:node /project/node_modules && yarn install && yarn gwen -bn gwen/features"
     networks:
       - gwen-net
 networks:
